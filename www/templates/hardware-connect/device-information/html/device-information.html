@@ -1,0 +1,65 @@
+<!--View Information-->
+<!--View name : Device Information-->
+<!--Controller name : deviceInformationCtrl-->
+<!--Controller path : www/templates/hardware-connect/device-information/js/controllers.js-->
+<!--State name : app.deviceInformation-->
+<!--URL : #app/deviceInformation-->
+
+<ion-view title=" Namaz Schedule ">
+
+    <ion-content scroll="true">
+        <!--toolbar section-->
+        <md-toolbar class="bar-subheader md-tall md-primary toolbar-medium toolbar-in-content">
+            <div>
+                <h1>
+                    <i class="fa fa-clock-o"></i>
+                </h1>
+
+                <h3>{{NamazSchedule.upcomming_namaz_name}} {{NamazSchedule.upcomming_namaz_time}}</h3>
+                <p>{{NamazSchedule.Hijri_date}}  </p>
+            </div>
+        </md-toolbar> <!--end toolbar section-->
+
+        <!--device information section-->
+        <!--lise section-->
+        <md-list id="device-information-content" class="fade-in">
+            <md-list-item class="row">
+              <p>   Fajr Namaz  </p>
+              <span class="badge badge-assertive">{{NamazSchedule.items[0].fajr}}</span>
+            <md-divider></md-divider>
+              </md-list-item>
+            <md-list-item class="row">
+                <p>  Dhuhr Namaz </p>
+                <span class="badge badge-assertive">{{NamazSchedule.items[0].dhuhr}}</span>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-list-item class="row">
+              <p>  Asr Namaz </p>
+              <span class="badge badge-assertive">{{NamazSchedule.items[0].asr}}</span>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-list-item class="row">
+                <p>  Maghrib Namaz </p>
+                  <span class="badge badge-assertive">{{NamazSchedule.items[0].maghrib}}</span>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-list-item class="row">
+              <p>  Isha Namaz </p>
+              <span class="badge badge-assertive">{{NamazSchedule.items[0].isha}}</span>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-card>
+            <img ng-src="{{NamazSchedule.qibla_direction_img}}" class="md-card-image" >
+          </md-card>
+        </md-list>
+        <!--end lise section-->
+        <!--end device information section-->
+    </ion-content>
+
+    <!--loading progress-->
+    <div id="device-information-loading-progress" class="loading-progress fade-in">
+        <ion-spinner ng-if="!isAndroid" class="progress-circular"></ion-spinner>
+        <md-progress-circular ng-if="isAndroid" md-mode="indeterminate"></md-progress-circular>
+    </div><!--end loading progress-->
+
+</ion-view>

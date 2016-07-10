@@ -1,0 +1,103 @@
+<!--View Information-->
+<!--View name : Device Image Picker-->
+<!--Controller name : imagePickerCtrl-->
+<!--Controller path : www/templates/hardware-connect/image-picker/js/controllers.js-->
+<!--State name : app.imagePicker-->
+<!--URL : #app/imagePicker-->
+
+<ion-view view-title="">
+    <!--toolbar section
+    <md-toolbar class="bar-subheader md-tall md-primary toolbar-medium">
+        <div>
+            <h1>Image Picker</h1>
+
+            <h2>Device Image Gallery</h2>
+        </div>
+        <a class="md-button md-accent md-fab fab-toolbar-medium"
+           ng-click="showListBottomSheet($event)"
+           aria-label="showListBottomSheet">
+            <i class="fa fa-picture-o"></i>
+        </a>
+    </md-toolbar> <!--end toolbar section-->
+    <!--image picker section-->
+    <ion-content >
+
+      <div flex ng-cloak>
+        <md-grid-list
+              md-cols="2" md-cols-sm="2" md-cols-md="3" md-cols-gt-md="6"
+              md-row-height-gt-md="1:1" md-row-height="4:3"
+              md-gutter="6px" md-gutter-gt-sm="2px" >
+          <md-grid-tile ng-repeat="image in post_card"
+                        md-rowspan="1"
+                        md-colspan="1"
+                        md-colspan-sm="1"
+                        md-colspan-xs="1"
+                        ng-class="tile.background" >
+        <img ng-src="{{image.media_details.sizes.thumbnail.source_url}}"  class="image-list-thumb" ng-click="showImages($index)"/>
+            <md-grid-tile-footer><h3 style="color: white;">{{image.title.rendered}} by {{image.author.name }}</h3></md-grid-tile-footer>
+          </md-grid-tile >
+        </md-grid-list>
+      </div>
+
+        <!--list section-->
+        <md-list>
+            <md-card ng-repeat="image in imageList">
+                <img ng-src="{{image}}" class="md-card-image" alt="image{{$index+1}}">
+                <md-card-content>
+                    <h2 class="md-title">Image {{$index+1}}</h2>
+                </md-card-content>
+            </md-card>
+        </md-list>  <!--end list section-->
+
+
+    </ion-content><!--end image picker section-->
+
+    <!--angular template section-->
+    <script type="text/ng-template" id="image-picker-actions-template">
+        <md-bottom-sheet class="md-list md-has-header">
+            <h1 class="md-bottom-sheet-header">Image Picker Actions</h1>
+            <!--list section-->
+            <md-list>
+                <md-list-item>
+                    <a class="md-default-theme md-bottom-sheet-list-item"
+                       ng-click="selectImage(1)">
+                        <i class="ion-image"></i>
+                        <span>Single Select</span>
+                    </a>
+                </md-list-item>
+
+                <md-list-item>
+                    <a class="md-default-theme md-bottom-sheet-list-item"
+                       ng-click="selectImage(9999)">
+                        <i class="ion-images"></i>
+                        <span>Multiple Select</span>
+                    </a>
+                </md-list-item>
+            </md-list><!--end list section-->
+        </md-bottom-sheet>
+    </script><!--end angular template section-->
+    <!--angular template section-->
+    <script type="text/ng-template" id="image-popover.html">
+        <ion-modal-view>
+      <ion-header-bar class="bar-balanced material-background-nav-bar">
+        <h1 class="title">Post Card</h1>
+        <button class="button button-clear" ng-click="closeModal()">Close</button>
+      </ion-header-bar>
+        <ion-content>
+    <div class="modal image-modal transparent" >
+    <ion-slide-box on-slide-changed="slideChanged(index)" show-pager="true" active-slide="activeSlide">
+        <ion-slide ng-repeat="image in post_card">
+        <img ng-src="{{image.media_details.sizes.full.source_url}}" class="fullscreen-image"/>
+        <div class="card__author" style="padding: 5px;position: relative;">
+            <img ng-src="{{image.author.avatar_urls[48] }}" src="{{image.author.avatar_urls[48] }}">
+            <div class="card__author-content">
+            <p style="color: white;">  Posted By<a href="#" class="ng-binding"> {{image.author.name }}</a> </p>
+            </div>
+          </div>
+        </ion-slide>
+    </ion-slide-box>
+</div>
+  </ion-content>
+  </ion-modal-view>
+</script><!--end angular template section-->
+</ion-view>

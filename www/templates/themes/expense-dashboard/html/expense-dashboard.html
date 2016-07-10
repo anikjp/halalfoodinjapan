@@ -1,0 +1,93 @@
+<!--View Information-->
+<!--View name : Expense Dashboard-->
+<!--Controller name : expenseDashboardCtrl-->
+<!--Controller path : www/templates/themes/expense-dashboard/js/controllers.js-->
+<!--State name : app.expense-->
+<!--URL : #app/expense-->
+
+<ion-view title="" id="expense-dashboard">
+    <!--right button on navigation bar-->
+    <ion-nav-buttons side="right">
+        <md-button class="md-icon-button ion-nav-button-right" ng-click="logout()"
+                   aria-label="Setting">
+            <i class="ion-log-out"></i>
+        </md-button>
+    </ion-nav-buttons> <!--end right button on navigation bar-->
+
+    <!--expense content section-->
+    <ion-content id="menu-dashboard-content" class="no-header" scroll="true" >
+      <!--expense toolbar section-->
+      <md-toolbar class="bar-subheader md-tall md-primary toolbar-expense">
+          <div>
+              <img src="{{mainuser.avatar.medium_large}}" class="user-img"/>
+
+              <h1>{{mainuser.data.firstname}} {{mainuser.data.lastname}}</h1>
+
+              <h2>{{mainuser.data.email}}</h2>
+          </div>
+          <a class="md-button md-accent md-fab md-mini fab-toolbar-medium" aria-label="Add" ng-click="goToSetting()">
+              <i class="icon ion-edit"></i>
+          </a>
+      </md-toolbar><!--end expense toolbar section-->
+      	<md-divider ></md-divider>
+        <!--Below code it will disable animation to better performance-->
+        <div class="menu-panel">
+            <div class="row">
+                <div class="col-33" ng-click="doSomeThing()">
+                    <i class="fa fa-picture-o"></i>
+
+                    <p>Image</p>
+                </div>
+                <div class="col-33" ng-click="showToast('Music')">
+                    <i class="fa fa fa-music"></i>
+
+                    <p>Music</p>
+                </div>
+                <div class="col-33" ng-click="showToast('Camera')">
+                    <i class="fa fa fa-camera"></i>
+
+                    <p>Camera</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-33" ng-click="showToast('Video')">
+                    <i class="fa fa-video-camera"></i>
+
+                    <p>Video</p>
+                </div>
+                <div class="col-33" ng-click="showToast('Setting')">
+                    <i class="fa fa-cog"></i>
+
+                    <p>Setting</p>
+                </div>
+                <div class="col-33" ng-click="showToast('Contract')">
+                    <i class="fa fa-users"></i>
+
+                    <p>Contract</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-33" ng-click="showToast('Inbox')">
+                    <i class="fa fa-inbox"></i>
+
+                    <p>Inbox</p>
+                </div>
+                <div class="col-33" ng-click="showToast('Card')">
+                    <i class="fa fa-credit-card"></i>
+
+                    <p>Card</p>
+                </div>
+                <div class="col-33" ng-click="showToast('More')">
+                    <i class="fa fa-ellipsis-h"></i>
+
+                    <p>More</p>
+                </div>
+            </div>
+        </div><!--end panel section-->
+
+        <!--Below code it will show animation when selecting row.-->
+
+    </ion-content><!--end expense content section-->
+</ion-view>

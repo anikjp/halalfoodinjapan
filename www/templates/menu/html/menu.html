@@ -1,0 +1,260 @@
+<!--View Information-->
+<!--View name : Menu-->
+<!--Controller name : menuCtrl-->
+<!--Controller path : www/templates/menu/js/controllers.js-->
+<!--State name : app-->
+<!--URL : #app-->
+
+<ion-side-menus enable-menu-with-back-views="false">
+    <ion-side-menu-content>
+        <ion-nav-bar class="bar-balanced  material-background-nav-bar">
+            <ion-nav-buttons side="left">
+                <a class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-click="toggleLeft()"></a>
+            </ion-nav-buttons>
+        </ion-nav-bar>
+        <ion-nav-view name="menuContent"></ion-nav-view>
+    </ion-side-menu-content>
+    <md-sidenav md-component-id="left">
+        <!--menu section-->
+        <div class="material-background" id="toggle-menu-left-header">
+            <!--menu header section-->
+            <div class="menu-left-header" ng-if="userisactive">
+                <img class="user-img" ng-src="{{userimage}}" >
+                <div layout="row">
+                  <div flex="80">
+                    <p ng-init=getuser()>
+                      <span class="sub-title">Is logged</span>
+                        <span class="title">{{userFname | uppercase}} {{userLname | uppercase}}</span>
+                        <br/>
+                        <span class="sub-title">{{email}}</span>
+                    </p>
+                  </div>
+                  <div flex="20" ng-click="navigateTo('app.expense')">
+                    <p style="text-align: center;font-size: 20px;margin: 20px 0 0px;" >
+                       <i class="ion-chevron-down"></i>
+                   </p>
+                  </div>
+                </div>
+
+            </div>
+            <div class="menu-left-header" ng-if="!userisactive">
+                <img class="user-img" ng-src="img/app_icon.png">
+                <div layout="row">
+                  <div flex="80">
+                    <p>
+                        <span class="title">Halal Food In Japan</span>
+                        <br/>
+                        <span class="sub-title">Where you can find everything in Halal</span>
+                    </p>
+                  </div>
+                  <div flex="20" >
+                    <p style="text-align: center;font-size: 20px;margin: 20px 0 0px;" ng-click="navigateTo('app.authentication')">
+                       <i class="ion-log-in"></i>
+                   </p>
+                  </div>
+                </div>
+            </div>
+            <!--end menu header section-->
+        </div> <!--menu content section-->
+
+        <ion-content id="toggle-menu-left-content">
+
+            <!--If device is android application will present below code.-->
+            <!--It will disable animation to better performance on android.-->
+            <!--list section-->
+            <div ng-if="isAndroid" class="menu-list">
+                <div class="row menu-item"  ng-click="navigateTo('app.dashboard')">
+                    <div class="col-33 badge-assertive">
+                        <i class="fa fa-th-list badge-assertive"></i>
+                    </div>
+                    <div class="col-66">
+                        <span>Dashboard</span>
+                    </div>
+                </div>
+                <div class="row menu-item"  ng-click="navigateTo('app.flashLight')">
+                    <div class="col-33">
+                        <i class="fa fa-search"></i>
+                    </div>
+                    <div class="col-66">
+                        <span>Serach</span>
+                    </div>
+                </div>
+                <div class="row menu-item" ng-click="navigateTo('app.nearby')">
+                    <div class="col-33">
+                        <i class="fa fa-cube"></i>
+                    </div>
+                    <div class="col-66">
+                        <span>Nearby</span>
+                    </div>
+                </div>
+                <div class="row menu-item" ng-click="navigateTo('app.vibration')">
+                    <div class="col-33">
+                        <i class="fa fa-gratipay"></i>
+                    </div>
+                    <div class="col-66">
+                        <span>Popular</span>
+                    </div>
+                </div>
+                <div class="row menu-item" ng-click="navigateTo('app.flashLight')">
+                    <div class="col-33">
+                        <i class="fa fa-bookmark"></i>
+                    </div>
+                    <div class="col-66">
+                        <span>Bookmark</span>
+                    </div>
+                </div>
+               <hr>
+               <div class="row menu-item"  ng-click="navigateTo('app.restaurant')">
+                    <div class="col-33">
+                        <i class="fa fa-cutlery"></i>
+                    </div>
+                    <div class="col-66">
+                        <span>Restaurant</span>
+                    </div>
+                </div>
+                <div class="row menu-item"  ng-click="navigateTo('app.mosquelist')">
+                    <div class="col-33">
+                        <i class="fa fa-rebel"></i>
+                    </div>
+                    <div class="col-66">
+                        <span>Mosque</span>
+                    </div>
+                </div>
+                <div class="row menu-item"  ng-click="navigateTo('app.groceryshoplist')">
+                    <div class="col-33">
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                    <div class="col-66">
+                        <span>Grocery Shop</span>
+                    </div>
+                </div>
+                <div class="row menu-item"  ng-click="navigateTo('app.cubeFeed')">
+                    <div class="col-33">
+                        <i class="fa fa-rss"></i>
+                    </div>
+                    <div class="col-66">
+                        <span>Timeline Blog</span>
+                    </div>
+                </div>
+                <div class="row menu-item"  ng-click="navigateTo('app.imagepicker')">
+                    <div class="col-33">
+                        <i class="fa fa-calendar-check-o"></i>
+                    </div>
+                    <div class="col-66">
+                        <span>Photo Album</span>
+                    </div>
+                </div>
+                <div class="row menu-item"  ng-click="navigateTo('app.vibration')">
+                    <div class="col-33">
+                        <i class="fa fa-cogs"></i>
+                    </div>
+                    <div class="col-66">
+                        <span>Settings</span>
+                    </div>
+                </div>
+                <div class="row menu-item"  ng-click="navigateTo('app.flashlight')">
+                    <div class="col-33">
+                        <i class="fa fa-bolt"></i>
+                    </div>
+                    <div class="col-66">
+                        <span>About Us</span>
+                    </div>
+                </div>
+                <div class="row menu-item"  ng-click="navigateTo('app.namazschedule')">
+                    <div class="col-33">
+                        <i class="fa fa-info"></i>
+                    </div>
+                    <div class="col-66">
+                        <span>Namaz Schedule</span>
+                    </div>
+                </div>
+                <div class="row menu-item"  ng-click="navigateTo('app.authentication')">
+                    <div class="col-33">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <div class="col-66">
+                        <span>Authentication</span>
+                    </div>
+                </div>
+                <div class="row menu-item"  ng-click="navigateTo('app.pricing')">
+                    <div class="col-33">
+                        <i class="fa fa-info-circle"></i>
+                    </div>
+                    <div class="col-66">
+                        <span>About </span>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!--If device is not Android application will present below code.-->
+            <!--It will show animation when selecting row.-->
+            <md-list ng-if="!isAndroid">
+                <md-list-item class="menu-list-item" ng-click="navigateTo('app.dashboard')">
+                    <i class="fa fa-th-list badge-assertive"></i>
+                    <span>Dashboard</span>
+                </md-list-item>
+            <md-list-item class="menu-list-item" ng-click="navigateTo('app.flashLight')">
+                    <i class="fa fa-search"></i>
+                    <span>Serach</span>
+            </md-list-item>
+            <md-list-item class="menu-list-item" ng-click="navigateTo('app.nearby')">
+                    <i class="fa fa-compass"></i>
+                    <span>Nearby</span>
+                </md-list-item>
+            <md-list-item class="menu-list-item" ng-click="navigateTo('app.vibration')">
+                    <i class="fa fa-gratipay"></i>
+                    <span>Popular</span>
+                </md-list-item>
+                <md-list-item class="menu-list-item" ng-click="navigateTo('app.flashLight')">
+                    <i class="fa fa-bookmark"></i>
+                    <span>Bookmark</span>
+                </md-list-item>
+                 <md-list-item class="menu-list-item" ng-click="navigateTo('app.restaurant')">
+                    <i class="fa fa-cutlery"></i>
+                    <span>Restaurants</span>
+            </md-list-item>
+            <md-list-item class="menu-list-item" ng-click="navigateTo('app.mosquelist')">
+                    <i class="fa fa-rebel"></i>
+                    <span>Mosque</span>
+            </md-list-item>
+            <md-list-item class="menu-list-item" ng-click="navigateTo('app.groceryshoplist')">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span>Grocery Shop</span>
+            </md-list-item>
+                <md-list-item class="menu-list-item" ng-click="navigateTo('app.cubeFeed')">
+                    <i class="fa fa-rss"></i>
+                    <span>Timeline Blog</span>
+                </md-list-item>
+                <md-list-item class="menu-list-item" ng-click="navigateTo('app.imagePicker')">
+                    <i class="fa fa-calendar-check-o"></i>
+                    <span>Photo Album</span>
+                </md-list-item>
+                <md-list-item class="menu-list-item" ng-click="navigateTo('app.vibration')">
+                    <i class="fa fa-cogs"></i>
+                    <span>Settings</span>
+                </md-list-item>
+                <md-list-item class="menu-list-item" ng-click="navigateTo('app.flashLight')">
+                    <i class="fa fa-bolt"></i>
+                    <span>About Us</span>
+                </md-list-item>
+                <md-list-item class="menu-list-item" ng-click="navigateTo('app.namazschedule')">
+                    <i class="fa fa-clock-o"></i>
+                    <span>Namaz Schedule</span>
+                </md-list-item>
+                <md-list-item class="menu-list-item" ng-click="navigateTo('app.authentication')">
+                    <i class="fa fa-user"></i>
+                    <span>authentication</span>
+                </md-list-item>
+				<md-list-item class="menu-list-item" ng-click="navigateTo('app.pricing')">
+                    <i class="fa fa-info-circle"></i>
+                    <span>About</span>
+                </md-list-item>
+            </md-list>
+            <!--end list section-->
+        </ion-content><!--end menu content section-->
+        <!--end menu section-->
+
+    </md-sidenav>
+</ion-side-menus>

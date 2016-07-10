@@ -1,0 +1,49 @@
+<!--View Information-->
+<!--View name : Fake Login-->
+<!--State name : app.fakeLogin-->
+<!--URL : #app/fakeLogin-->
+
+<ion-view title="Sign In Process">
+
+    <!--left button on navigation bar-->
+
+    <ion-nav-buttons side="left">
+        <a ng-click="$ionicGoBack()" class="button back-button buttons  button-clear header-item nav-back-btn">
+            <i class="ion-android-arrow-back "></i>
+        </a>
+    </ion-nav-buttons>
+    <!--login content section-->
+    <ion-content id="social-login" class="bg-white" multi-bg="['img/giphy-bg.gif']" interval="3000">
+        <!--fake login form section-->
+        <form class="fakeLogin-form">
+            <div>
+                <img src="img/app_icon.png"/>
+            </div>
+            <div class="sub-header">Sign in to application</div>
+
+            <div id="fakeLogin">
+                <md-input-container md-no-float="">
+                    <input class="user-name" ng-model="user.userName" required placeholder="Username">
+                </md-input-container>
+                <hr/>
+                <md-input-container md-no-float="">
+                <input class="user-password" type="password" placeholder="Password" name="password" ng-model="user.password" required show-hide-input>
+                </md-input-container>
+            </div>
+            <div>
+                <a class="md-raised social-button md-button md-default-theme material-background" ng-click="doLogin()" ng-disabled="login_form.$invalid">
+                    Sign In
+                </a>
+                <p ng-show="error" class="message error">{{error}}</p>
+            </div>
+             <div class="alternative-actions">
+          <a class="forgot-password button button-small button-clear" ui-sref="forgot_password">
+            Forgot Password?
+          </a>
+          <a class="sign-up button button-small button-clear" ng-click="navigateTo('app.fakeSignUp')">
+            Sign Up
+          </a>
+        </div>
+        </form> <!--end fake login form section-->
+    </ion-content><!--end login content section-->
+</ion-view>

@@ -1,0 +1,156 @@
+<!--View Information-->
+<!--View name : Restaurant-->
+<!--State name : app.restaurant-->
+<!--URL : #app/restaurant-->
+
+<ion-view title="Restaurant Dashboard" hide-nav-bar="false" >
+    <!--restaurant section-->
+    <ion-content id="restaurant">
+        <!--slider section-->
+		<ion-slide-box id="restaurant-slide-box" style="height:154px;">
+        <ion-slide class="slide-01"  ng-style="background1">
+          <div class="content" >
+              <h1>
+                  {{restaurant_ad[0].title.rendered}}
+              </h1>
+
+              <p>
+                    {{restaurant_ad[0].description}}
+              </p>
+          </div>
+      </ion-slide>
+              <ion-slide class="slide-02" ng-style="background2">
+                  <div class="content" >
+                      <h1>
+                        {{restaurant_ad[1].title.rendered}}
+                      </h1>
+
+                      <p>
+                          {{restaurant_ad[1].description}}
+                      </p>
+                  </div>
+              </ion-slide>
+              <ion-slide class="slide-03" ng-style="background3">
+                  <div class="content" >
+                    <h1>
+                      {{restaurant_ad[2].title.rendered}}
+                    </h1>
+
+                    <p>
+                        {{restaurant_ad[2].description}}
+                    </p>
+                  </div>
+              </ion-slide>
+              <ion-slide class="slide-04" ng-style="background4">
+                  <div class="content" >
+                    <h1>
+                      {{restaurant_ad[3].title.rendered}}
+                    </h1>
+
+                    <p>
+                        {{restaurant_ad[3].description}}
+                    </p>
+                  </div>
+              </ion-slide>
+              <ion-slide class="slide-05" ng-style="background5">
+                  <div class="content" >
+                    <h1>
+                      {{restaurant_ad[4].title.rendered}}
+                    </h1>
+
+                    <p>
+                        {{restaurant_ad[4].description}}
+                    </p>
+                  </div>
+              </ion-slide>
+        </ion-slide-box>
+  <!--end slider section-->
+
+        <!--restaurant content section-->
+        <div id="restaurant-content">
+            <div class="row ">
+                <div class="col promotions-header">
+                    <h1>
+                        <i class="fa fa-bullhorn"></i> Restaurant Catagory
+                    </h1>
+                </div>
+            </div>
+
+            <!--product slide section-->
+            <ion-scroll direction="x"  class="product-slide-list">
+                <div class="feed-list" >
+                    <div class="feed-item" ng-repeat="item in restaurant_type" ng-click="navigateTo('app.clothShop',item.slug,item.taxonomy)">
+                        <div class="hfij-slidebox-image" ng-if="item['meta-data'] !== 'else'" style="background-image: url('{{item['meta-data'].icon}}')">
+                            <div class="hfij-slidebox-title">
+                            {{item.name}}
+                        </div>
+                        </div>
+						<div class="img-header" ng-if="item['meta-data'] === else" style="background-image: url('img/restaurant/indian.jpg')">
+                            <div class="content">
+                            {{item.name}}
+                        </div>
+                        </div>
+
+                    </div>
+               </div>
+            </ion-scroll>
+            <div class="row">
+                <div class="col menu-header">
+                    <h1>
+                        <i class="fa fa-spoon"></i> Location Catagory
+                    </h1>
+                </div>
+            </div><!--end product slide section-->
+
+            <!--product slide section-->
+            <ion-scroll direction="x" class="product-slide-list">
+                <div class="feed-list">
+                    <div class="feed-item"ng-repeat="location in location_type" ng-click="navigateTo('app.clothShop',location.slug,location.taxonomy)">
+                        <div class="hfij-slidebox-image" ng-if="location['meta-data'] !== 'else'" style="background-image: url('{{location['meta-data'].icon}}')">
+                        <div class="hfij-slidebox-title">
+                            {{location.name}}
+                        </div>
+						</div>
+						<div class="img-header" ng-if="location['meta-data'] === else" style="background-image: url('img/restaurant/indian.jpg')">
+                        </div>
+
+                    </div>
+                </div>
+            </ion-scroll><!--end product slide section-->
+<div class="row">
+                <div class="col menu-header">
+                    <h1>
+                        <i class="fa fa-spoon"></i> Item Tag
+                    </h1>
+                </div>
+            </div><!--end product slide section-->
+            <div class="row" layout-align="center center">
+              <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                <div class="col menu-content-detail"  >
+                  <md-chips >
+      <md-chip class="chip-items" ng-repeat="tag in item_type" ng-click="navigateTo('app.clothShop',tag.slug,tag.taxonomy)">{{tag.name}}</md-chip>
+      <!-- Static chips are transcluded -->
+        </md-chips>
+                </div>
+                </section>
+            </div>
+
+
+            <div class="row" style="text-align: center;">
+                <div class="col menu-header">
+                    <h1>
+                        <i class="fa fa-inbox"></i> Reservation
+                    </h1>
+                </div>
+            </div>
+            <div class="row" style="text-align: center;">
+                <div class="col menu-content-detail">
+                  www.HalalFoodInJapan.com
+                    <br/>
+                    Thanks You For Supporting Us.
+                </div>
+            </div>
+
+        </div> <!--end restaurant content section-->
+    </ion-content><!--end restaurant section-->
+</ion-view>

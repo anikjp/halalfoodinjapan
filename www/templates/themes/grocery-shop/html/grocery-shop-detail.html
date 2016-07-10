@@ -1,0 +1,146 @@
+<!--View Information-->
+<!--View name : Location Feed-->
+<!--State name : app.locationFeed-->
+<!--URL : #app/locationFeed-->
+
+<ion-view title="" >
+<!--left button on navigation bar-->
+    <ion-nav-buttons side="left">
+        <a ng-click="$ionicGoBack()" class="button back-button buttons  button-clear header-item nav-back-btn">
+            <i class="ion-android-arrow-back"></i>
+        </a>
+    </ion-nav-buttons><!--end left button on navigation bar-->
+    <!--location feed section-->
+	<!--toolbar section-->
+	<!--toolbar section-->
+    <md-toolbar class="bar-subheader md-tall md-primary toolbar-small">
+	<md-list-item class="md-2-line">
+                    <img ng-src="{{media.media_details.sizes.medium.source_url}}" class="md-avatar"/>
+
+                    <div class="md-list-item-text">
+                        <p>{{restaurant.title.rendered}}</p>
+						<h6 style="color: white;">{{restaurant['_ait-item_item-data'][0].email}}</h6>
+						<h6 style="color: white;">{{restaurant['_ait-item_item-data'][0].web}}</h6>
+				   </div>
+    </md-list-item>
+	</md-toolbar><!--end toolbar section-->
+    <ion-content id="content-detail">
+        <!--list section-->
+		<md-card>
+    <md-card-content>
+            <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab label="ABOUT">
+                    <md-content flex layout-padding>
+                       <p> {{restaurant.content.rendered}} </p>
+                    </md-content>
+					<!--list comment section-->
+			<md-list class="comment">
+            <md-subheader>Comments</md-subheader>
+            <md-list-item class="md-3-line" ng-repeat="comment in commentlist">
+                <img ng-src="{{comment.author_avatar_urls[24]}}" class="md-avatar"/>
+
+                <div class="md-list-item-text">
+                    <h3>{{comment.author_name}}</h3>
+                     <h4>{{comment.date |date: format : short}}</h4>
+                    <p data-ng-bind-html="comment.content.rendered"></p>
+                </div>
+                <md-divider></md-divider>
+            </md-list-item>
+
+        </md-list><!--end list comment section-->
+
+                </md-tab>
+                <md-tab label="ACCESS">
+                        <md-list>
+                <md-subheader class="md-warn">Address</md-subheader>
+                    <p>{{restaurant['_ait-item_item-data'][0]['map'].address}}</p>
+                    <md-divider></md-divider>
+
+                  <md-subheader class="md-no-sticky">Nearby Stations Form the Shop</md-subheader>
+                  <div class="row" ng-repeat="station in stationlist" style="margin-bottom: 15px;">
+                                                  <div class="col-80">
+                                                      <h5>City Name: {{ station.city }}</h5>
+                                                      <p>Station Name: {{ station.name }} </p>
+
+                                                      <p>Line: Station Name: {{ station.line }}</p>
+
+                                                      <p>Travel time : {{ station.traveltime}}</p>
+
+                                                      <p>Total Distance : {{ station.distanceKm }}</p>
+
+                                                      <md-divider></md-divider>
+                                                  </div>
+                                                  <div class="col-20" style="margin-top: 30px;">
+                                                      <a class="btn btn-danger" href="#">
+                                                      <i class="fa fa-map-o fa-2x"></i></a>
+                                                  </div>
+
+
+                                              </div><!--end product tab detail shipping section-->
+      	</md-list>
+                    </md-content>
+                </md-tab>
+				<md-tab label="FEATURE">
+                 <div class="list">
+  <a class="item item-icon-left" href="#">
+    <i class="icon ion-ios-time"></i>
+    Saturday
+    <span class="badge badge-assertive">{{restaurant['_ait-item_item-data'][0].openingHoursSaturday}}</span>
+  </a>
+ <a class="item item-icon-left" href="#">
+    <i class="icon ion-ios-time"></i>
+    Sunday
+    <span class="badge badge-assertive">{{restaurant['_ait-item_item-data'][0].openingHoursSunday}}</span>
+  </a>
+   <a class="item item-icon-left" href="#">
+    <i class="icon ion-ios-time"></i>
+    Monday
+    <span class="badge badge-assertive">{{restaurant['_ait-item_item-data'][0].openingHoursMonday}}</span>
+  </a> <a class="item item-icon-left" href="#">
+    <i class="icon ion-ios-time"></i>
+    Tuesday
+    <span class="badge badge-assertive">{{restaurant['_ait-item_item-data'][0].openingHoursTuesday}}</span>
+  </a>
+   <a class="item item-icon-left" href="#">
+    <i class="icon ion-ios-time"></i>
+    Wednesday
+    <span class="badge badge-assertive">{{restaurant['_ait-item_item-data'][0].openingHoursWednesday}}</span>
+  </a>
+   <a class="item item-icon-left" href="#">
+    <i class="icon ion-ios-time"></i>
+    Thursday
+    <span class="badge badge-assertive">{{restaurant['_ait-item_item-data'][0].openingHoursThursday}}</span>
+  </a>
+   <a class="item item-icon-left" href="#">
+    <i class="icon ion-ios-time"></i>
+    Friday
+    <span class="badge badge-assertive">{{restaurant['_ait-item_item-data'][0].openingHoursFriday}}</span>
+  </a>
+  <md-divider></md-divider>
+  <a class="item item-icon-left" href="#">
+    <i class="icon ion-document-text"></i>
+    Note
+    <span class="badge badge-assertive">{{restaurant['_ait-item_item-data'][0].openingHoursNote}}</span>
+  </a>
+</div>
+                </md-tab>
+				<md-tab label="GALLERY">
+<ion-gallery ion-gallery-items="items" ion-gallery-row="2" ion-item-action="itemAction(item)" ion-zoom-events="true"></ion-gallery>
+          <ion-list>
+        <ion-item class="item item-thumbnail-left" ng-repeat="galery in restaurant['_ait-item_item-data'][0].gallery" ng-click="photoBrowser($index)">
+          <img ng-src="{{galery.image}}">
+          <h2>Index - {{$index + 1}}</h2>
+          <p class="item-wrap">{{galery}}</p>
+        </ion-item>
+      </ion-list>
+                </md-tab>
+            </md-tabs>
+		</md-card-content>
+	</md-card>
+    </ion-content><!--end location feed section-->
+      <div class="footer-fab-bar" >
+        <a class="md-button md-accent md-fab fab-footer" ng-click="showPopup()" aria-label="Add">
+            <i class="ion ion-compose"></i>
+        </a>
+    </div>
+</ion-view>

@@ -1,0 +1,46 @@
+<!--View Information-->
+<!--View name : TryApp-->
+<!--State name : app.tryApp-->
+<!--URL : #app/tryApp-->
+
+<ion-view cache-view="false" class="welcome-view">
+    <!--left button on navigation bar-->
+    <ion-nav-bar>
+    <ion-nav-buttons side="right">
+    <a class="button button-clear button-light" ng-click="navigateTo('app.dashboard')">
+      Skip
+    </a>
+    </ion-nav-buttons>
+    </ion-nav-bar>
+    <!--try app section-->
+    <ion-content scroll="false" style="position: absolute;z-index: 9;">
+
+    <!-- <div multi-bg="['http://lorempixel.com/640/1136?1']" interval="3000" helper-class="no-facebook-welcome-bg"> -->
+    <!-- <div multi-bg="['http://i.giphy.com/tKX6FNU9UGwF2.gif']" interval="3000" helper-class="no-facebook-welcome-bg"> -->
+    <!-- <div multi-bg="['http://i.giphy.com/13f7pejozPXuta.gif']" interval="3000" helper-class="no-facebook-welcome-bg"> -->
+    <!--<div multi-bg="['img/giphy-bg-2.gif']" interval="3000" helper-class="no-facebook-welcome-bg"> -->
+     <div style="background-image: url(http://i.giphy.com/TJE3lmKy39drq.gif);" interval="3000" class="welcome-bg no-facebook-welcome-bg" >
+      <div class="top-content row">
+        <div class="app-copy col col-center">
+          <h1 class="app-logo" style="
+    font-family: RobotoDraft, Roboto;
+">Halal Food In Japan</h1>
+          <p class="app-tagline">
+            All is Halal Indeed!!
+          </p>
+        </div>
+      </div>
+      <div class="bottom-content row">
+        <div class="col col-bottom">
+          <a class="create-account button-large button button-block" ng-click="navigateToAuth('app.fakeSignUp')" >
+            Create an account
+          </a>
+          <a class="have-account button button-clear button-block" ng-click="navigateToAuth('app.fakeLogin')" >
+            Already have an account?
+          </a>
+          <section ng-include="'templates/themes/try-app/html/legal-notice.html'"></section>
+        </div>
+      </div>
+    </div>
+  </ion-content><!--end try app section-->
+</ion-view>

@@ -1,0 +1,40 @@
+<!--View Information-->
+<!--View name : Location Feed-->
+<!--State name : app.locationFeed-->
+<!--URL : #app/locationFeed-->
+<ion-view title="Item type : {{item_type | uppercase }}">
+   <!--left button on navigation bar-->
+   <ion-nav-buttons side="left">
+      <a ng-click="$ionicGoBack()" class="button back-button buttons  button-clear header-item nav-back-btn">
+      <i class="ion-android-arrow-back"></i>
+      </a>
+   </ion-nav-buttons>
+   <!--end left button on navigation bar-->
+   <!--location feed section-->
+   <ion-content id="location-feed-content">
+      <!--list section-->
+      <div class="location-list">
+         <!--location item section-->
+         <div class="location-item" ng-repeat="item in restaurants" >
+			<div ng-click="navigateTo('app.restaurantdetail',item.id,item.type)">
+            <div class="location-img" style="background-image:url('{{item['_ait-item_item-data'][0]['gallery'][0].image}}');height: 170px;">
+            </div >
+            <div class="location-content row">
+               <div class="col-90">
+                  <small>{{item.title.rendered}}</small>
+                  <p>
+                     <i class="fa fa-flag"></i> Recommended for:{{item['_ait-item_item-data'][0]['map'].address}}
+                  </p>
+               </div>
+               <div class="col-10">
+                <i class="fa fa-bookmark" aria-hidden="true"></i>
+               </div>
+            </div>
+			</div>
+         </div>
+         <!--end location item section-->
+      </div>
+      <!--end list section-->
+   </ion-content>
+   <!--end location feed section-->
+</ion-view>

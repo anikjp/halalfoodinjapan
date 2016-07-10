@@ -1,0 +1,150 @@
+<!--View Information-->
+<!--View name : Location Feed-->
+<!--State name : app.locationFeed-->
+<!--URL : #app/locationFeed-->
+<ion-view title="Nearby">
+   <!--end left button on navigation bar-->
+        <ion-nav-buttons side="right">
+        <md-button class="md-icon-button ion-nav-button-right" ng-click="doFilter()"
+                   aria-label="Filter">
+            <i class="ion-ios-color-filter-outline"></i>
+        </md-button>
+         <md-button class="md-icon-button ion-nav-button-right" ng-click="doRefresh()"
+                   aria-label="Filter">
+            <i class="ion-loop"></i>
+        </md-button>
+
+    </ion-nav-buttons> <!--end right button on navigation bar-->
+   <!--location feed section-->
+
+   <ion-content id="location-feed-content" >
+
+       <map center="{{latitude}},{{longitude}}"
+            zoom="15"
+            heading="90"
+            tilt="45"
+            zoom-control-options='{style:"small",position:"top_right"}'
+            rotate-control="true" rotate-control-options='{position:"right_center"}'
+            street-view-control="true" street-view-control-options='{position:"right_center"}'
+            map-type-id="{{mapid}}"
+            ng-show="showtype.map"
+            scaleControl="false">
+          <!-- ngRepeat: pos in positions -->
+        <marker  position="{{latitude}},{{longitude}}" icon="http://abnjp.com/resturent/wp-content/uploads/geoloc_pin.png"></marker>
+             <div ng-repeat="item in itemlist | orderBy:'distance' | filter:colourFilter | limitTo:range.showitems" ng-hide="true"  >
+          <marker position="{{item['_ait-item_item-data'][0]['map'].latitude}},{{item['_ait-item_item-data'][0]['map'].longitude}}"
+          icon="{{item.map_icon}}" ng-click="navigateTo('app.details',item.id,item.type)" on-click="pinClicked({{item}})">
+          </marker>
+            </div>
+        </map>
+
+             <div class="location-list" ng-show="showtype.tab">
+         <!--location item section-->
+         <div class="location-item" ng-repeat="item in itemlist | orderBy:'distance' | filter:colourFilter | limitTo:range.showitems" ng-show="Is_InRange(item.distance)" >
+			<div ng-click="navigateTo('app.details',item.id,item.type)">
+
+            <div class="hfij-card-image" style="background-image:url('{{item['_ait-item_item-data'][0]['gallery'][0].image}}')">
+
+            <div class="row hfij-card-title" >
+               <div class="col-90">
+                  <small>{{item.title.rendered}}</small>
+               </div>
+               <div class="col-10">
+                  <ion-icon name="ion-android-bookmark"></ion-icon>
+               </div>
+            </div>
+             </div >
+			</div>
+         </div>
+         <!--end location item section-->
+      </div>
+
+
+
+      <!--end list section-->
+   </ion-content >
+        <div class="footer-fab-bar">
+        <a class="md-button md-accent md-fab md-fab-bottom-left md-scale" ng-click="changetomap()" aria-label="Add">
+            <i class="fa fa-map-o" aria-hidden="true"></i>
+        </a>
+        <a class="md-button md-accent md-fab md-fab-bottom-right md-scale" ng-click="changetolist()" aria-label="Add">
+            <i class="fa fa-list-ol" aria-hidden="true"></i>
+        </a>
+
+    </div>
+   <!--end location feed section-->
+</ion-view>
+          <script id="my-modal.html" type="text/ng-template">
+      <ion-modal-view>
+        <ion-header-bar class="bar-balanced material-background-nav-bar">
+          <h1 class="title">Filters Nearby Options</h1>
+          <button class="button button-clear" ng-click="closeModal()">Close</button>
+        </ion-header-bar>
+        <ion-content>
+          <ion-list>
+              <div class="item item-divider">Catagory</div>
+              <ion-checkbox  ng-click="includeColour('Restaurant')" >Restaurant</ion-checkbox >
+               <ion-checkbox  ng-click="includeColour('mosque')" >Mosque</ion-checkbox >
+               <ion-checkbox  ng-click="includeColour('grocery-shop')" >Grocery Shop</ion-checkbox >
+              <div class="item item-divider">Range</div>
+             <div class="item range range-balanced">
+          <i class="icon ion-ios-bolt-outline"></i>
+            <input id="levelrange" type="range" min="0" max="200" name="range" ng-model="range.value">
+          <i class="icon ion-ios-bolt"></i>
+        </div>
+      <div class="item item-divider">Measurement</div>
+      <label class="item item-input item-select">
+  <div class="input-label">
+    Map Type
+  </div>
+  <select name="mapid" ng-model="mapid">
+    <option value="SATELLITE" selected>SATELLITE</option>
+    <option value="HYBRID">HYBRID</option>
+  </select>
+</label>
+          </ion-list>
+        </ion-content>
+        <!--angular template section-->
+           <script type="text/ng-template" id="bottom-sheet-shared.html" >
+              {{selectitem}}
+
+               <md-bottom-sheet class="md-grid">
+                   <!--list section-->
+                   <md-list id="bottom-sheet-grid-md-list">
+                       <md-list-item>
+                           <a class="md-grid-item-content" ng-click="sharedFacebook()">
+                               <md-icon md-svg-src="facebook"></md-icon>
+                               <div class="md-grid-text"> Facebook</div>
+                           </a>
+                       </md-list-item>
+                       <md-list-item>
+                           <a class="md-grid-item-content" ng-click="sharedTwitter()">
+                               <md-icon md-svg-src="twitter"></md-icon>
+                               <div class="md-grid-text"> Twitter</div>
+                           </a>
+                       </md-list-item>
+                       <md-list-item>
+                           <a class="md-grid-item-content" ng-click="sharedMail()">
+                               <md-icon md-svg-src="mail"></md-icon>
+                               <div class="md-grid-text"> Mail</div>
+                           </a>
+                       </md-list-item>
+                       <md-list-item>
+                           <a class="md-grid-item-content" ng-click="saveImage()">
+                               <i class="ion-android-image"></i>
+
+                               <div class="md-grid-text"> Save Image</div>
+                           </a>
+                       </md-list-item>
+                       <md-list-item>
+                           <a class="md-grid-item-content" ng-click="sharedMore()">
+                               <md-icon md-svg-src="share-arrow"></md-icon>
+                               <div class="md-grid-text"> More</div>
+                           </a>
+                       </md-list-item>
+                   </md-list> <!--end list section-->
+               </md-bottom-sheet>
+           </script>
+
+      </ion-modal-view>
+    </script>

@@ -1,0 +1,62 @@
+<!--View Information-->
+<!--View name : Cube Feed-->
+<!--State name : app.cubeFeed-->
+<!--URL : #app/cubeFeed-->
+
+<ion-view title="Timeline Blog">
+    <!--cube feed section-->
+    <ion-content id="cube-feed-content">
+	<ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()">
+    </ion-refresher>
+	   	<div class="card radius shadowDepth1" ng-repeat="post in posts">
+    			<div class="card__image border-tlr-radius">
+    				<img src="{{post['thumbnail_images'].medium.url}}" alt="image" class="border-tlr-radius" >
+                </div>
+
+    			<div class="card__content card__padding">
+                    <div class="card__share">
+                        <div class="card__social">
+                            <a class="share-icon facebook" href="#"><span class="fa fa-facebook"></span></a>
+                            <a class="share-icon twitter" href="#"><span class="fa fa-twitter"></span></a>
+                            <a class="share-icon googleplus" href="#"><span class="fa fa-google-plus"></span></a>
+                        </div>
+                        <a id="share" class="share-toggle share-icon"></a>
+                    </div>
+
+    				<div class="card__meta">
+    					<a >{{post['categories'][0].title}}</a>
+                        <time>{{ post.date | date:'shortDate' }}</time>
+    				</div>
+                    <article class="card__article" ng-click="navigateTo('app.timelinedetail',post)">
+        <h2><a href="#">{{post.title | rawHtml}}</a></h2>
+                    <div class="card-content-outer" post-content>
+  <div class="card-content" dynamic-anchor-fix ng-bind-html="post.content | limitTo: 100 | rawHtml"></div>
+</div>    </article>
+    			</div>
+
+    			<div class="card__action">
+
+    				<div class="card__author">
+    					<img ng-src="{{post['author'].images}}">
+    					<div class="card__author-content">
+    						By <a href="#">{{post['author'].first_name}} {{post['author'].last_name}}</a>
+    					</div>
+    				</div>
+
+                    <div class="card__comment">
+                    <md-divider></md-divider>
+			<span class="icon icon--time">6 min <i class="fa fa-thumbs-o-up fa-1x"></i></span>
+			<span class="icon icon--comment"><a href="#" ng-if="post.comment_count != 0">{{post.comment_count}} <i class="fa fa-comment"></i></a>
+            <a href="#" ng-if="post.comment_count == 0">No <i class="fa fa-comment"></i></a></span>
+		  </div>
+    			</div>
+
+        <!--cube feed list section-->
+       </div><!--end cube feed list section-->
+    </ion-content><!--end cube feed section-->
+    <div class="footer-fab-bar" ng-click="navigateTo('app.commentdetail')">
+        <a class="md-button md-accent md-fab fab-footer" aria-label="Add">
+            <i class="ion ion-plus"></i>
+        </a>
+    </div>
+</ion-view>

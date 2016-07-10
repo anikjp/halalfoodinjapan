@@ -1,0 +1,54 @@
+<!--View Information-->
+<!--View name : Device Flashlight-->
+<!--Controller name : flashLightCtrl-->
+<!--Controller path : www/templates/hardware-connect/flash-light/js/controllers.js-->
+<!--State name : app.flashLight-->
+<!--URL : #app/flashLight-->
+
+<ion-view title="Search">
+  <!--left button on navigation bar-->
+  <ion-nav-buttons side="left">
+      <a ng-click="$ionicGoBack()" class="button back-button buttons  button-clear header-item nav-back-btn">
+          <i class="ion-android-arrow-back "></i>
+      </a>
+  </ion-nav-buttons><!--end left button on navigation bar-->
+    <!--left button on navigation bar-->
+    <!--flash light section-->
+    <!--flash light icon section-->
+    <!-- start search form -->
+     <!--right button on navigation bar-->
+    <ion-nav-buttons side="right">
+
+        <md-button class="md-icon-button ion-nav-button-right" ng-click="goToSetting()"
+                   aria-label="Setting">
+            <i class="ion-android-more-vertical"></i>
+        </md-button>
+    </ion-nav-buttons> <!--end right button on navigation bar-->
+    <ion-header-bar class="bar-subheader item-input-inset">
+        <label class="item-input-wrapper" style="margin:8px;">
+          <i class="icon ion-search placeholder-icon"></i>
+          <input type="search" placeholder="Search" ng-change="search()" ng-model="data.search">
+        </label>
+
+      </ion-header-bar>
+    			<!-- end search form -->
+    <ion-content id="flash-light-content" >
+  <md-list-item ng-repeat="message in messages" ng-click="goToPerson(message.title, $event)" class="noright">
+    <img alt="{{ message.title }}" ng-src="{{ message.img }}" class="md-avatar">
+    <p>{{ message.title }}</p>
+    <md-checkbox class="md-secondary" ng-model="person.selected"></md-checkbox>
+    <md-icon ng-click="doSecondaryAction($event)" aria-label="Send Email" class="md-secondary md-hue-3"></md-icon>
+    <md-icon class="md-secondary" ng-click="doSecondaryAction($event)" aria-label="Chat" ></md-icon>
+  </md-list-item>
+  <md-divider></md-divider>
+
+</md-list>
+
+
+<!--
+Copyright 2016 Google Inc. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that can be in foundin the LICENSE file at http://material.angularjs.org/license.
+-->
+
+    </ion-content><!--end flash light section-->
+</ion-view>

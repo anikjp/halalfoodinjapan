@@ -1,0 +1,34 @@
+<!--View Information-->
+<!--View name : Location Feed-->
+<!--State name : app.locationFeed-->
+<!--URL : #app/locationFeed-->
+<ion-view title="Shop List">
+   <!--end left button on navigation bar-->
+   <!--location feed section-->
+   <ion-content id="location-feed-content">
+      <!--list section-->
+      <div class="location-list">
+         <!--location item section-->
+         <div class="location-item" ng-repeat="item in shoplist" >
+			<div ng-click="navigateTo('app.groceryshopdetial',item.id,item.type)">
+            <div class="location-img" style="background-image:url('{{item['_ait-item_item-data'][0]['gallery'][0].image}}')">
+            </div >
+            <div class="location-content row" >
+               <div class="col-90">
+                  <small>{{item.title.rendered}}</small>
+                  <p>
+                     <i class="fa fa-flag"></i> Recommended for:{{item['_ait-item_item-data'][0]['map'].address}}
+                  </p>
+               </div>
+               <div class="col-10">
+                  <ion-icon name="ion-android-bookmark"></ion-icon>
+               </div>
+            </div>
+			</div>
+         </div>
+         <!--end location item section-->
+      </div>
+      <!--end list section-->
+   </ion-content>
+   <!--end location feed section-->
+</ion-view>

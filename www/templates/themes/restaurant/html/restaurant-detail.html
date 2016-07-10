@@ -1,0 +1,186 @@
+<!--View Information-->
+<!--View name : Location Feed-->
+<!--State name : app.locationFeed-->
+<!--URL : #app/locationFeed-->
+
+<ion-view title="{{restaurant.title.rendered}}" hide-nav-bar="true">
+<!--left button on navigation bar-->
+  <!--location feed section-->
+	  <ion-content id="online-course-content">
+
+
+      <!--toolbar section-->
+        <!--list section-->
+		<md-card style="margin: 0px;">
+			<div >
+      <span class="left-buttons items_back_button" >
+        <a ng-click="$ionicGoBack()" class="button back-button buttons  button-clear header-item" tabindex="0">
+        <i class="ion-android-arrow-back" style="color: aliceblue;"></i>
+        </a>
+     </span>
+		 <span class="right-buttons items_back_button" style="right: 0px;">
+			 <a class="button buttons  button-clear header-item" tabindex="0" style="right: 0px;position: absolute;">
+			 <i class="ion-share" style="color: aliceblue;"></i>
+			 </a>
+		</span>
+		 <md-list class="md-dense md-card-image items_info_bar" flex >
+			<md-list-item class="md-2-line">
+				<img ng-src="http://demo.geekslabs.com/materialize/v2.1/layout03/images/user-bg.jpg" class="md-avatar" alt="" />
+				<div class="md-list-item-text">
+					<h3 style="color: white;">{{restaurant.title.rendered}} </h3>
+					<!--product tab detail review section-->
+					<div class="product-detail-review">
+									<p style="color: white;"><span >
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+									</span>
+									{{commentlist.length}} Reviews
+								</p>
+					</div><!--end product tab detail review section-->
+
+				</div>
+			</md-list-item>
+			<md-divider ></md-divider>
+		</md-list>
+      <img ng-src="{{media.media_details.sizes.medium.source_url}}" style="height: 220px;" class="md-card-image" alt="">
+	 </div>
+
+		<md-card-content style="padding-top: 0px;">
+            <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab label="ABOUT">
+									<md-tab-label>
+		 					<i class="fa fa fa-list fa-2x" aria-hidden="true"></i>
+	 							</md-tab-label>
+                    <md-content flex layout-padding>
+											<ul class="list" style="margin-bottom: 0px;">
+    									<li class="item" style="text-align:center;padding:10px;">
+												<p>Rate this place,{{user.data.firstname}}
+											</p>
+												<span style="color: rgba(255, 112, 67, 0.84);" >
+														<i class="fa fa-star-o fa-2x" ></i>
+														<i class="fa fa-star-o fa-2x" ></i>
+														<i class="fa fa-star-o fa-2x" ></i>
+														<i class="fa fa-star-o fa-2x" ></i>
+														<i class="fa fa-star-o fa-2x" ></i>
+												</span>
+    								</li>
+								</ul>
+								<md-subheader class="md-warn">Address</md-subheader>
+                    <p>{{restaurant['_ait-item_item-data'][0]['map'].address}},{{restaurant['_ait-item_item-data'][0].telephone}}</p>
+								<img ng-src="{{address_map_url}}" style="width:100%" ng-click="openGoogleMap(restaurant['_ait-item_item-data'][0]['map'].address)">
+										<div layout="row" layout-align="space-around center" style="padding: 10px 0px 10px 0px;">
+<div><a href="tel:{{restaurant['_ait-item_item-data'][0].telephone}}" target="_blank"><span style="color: rgba(255, 112, 67, 0.84);"><i class="fa fa-phone-square fa-3x" aria-hidden="true"></i></span></a></div>
+<div><span style="color: rgba(255, 112, 67, 0.84);" ng-click="openbrowser(restaurant.link)"><i class="fa fa-globe fa-3x" aria-hidden="true"></i></span></div>
+<div><span style="color: rgba(255, 112, 67, 0.84);"><i class="fa fa-envelope-o fa-3x" aria-hidden="true"></i></span></div>
+</div>
+
+<p> {{restaurant.content.rendered}} </p>
+    </md-content>
+					<!--list comment section-->
+					<md-divider></md-divider>
+
+					<div class="list card" ng-repeat="comment in commentlist" style="margin: 5px 0px;">
+  <div class="item item-avatar" >
+    <img src="{{comment.author_avatar_urls[24]}}">
+    <h2>{{comment.author_name}}</h2>
+    <p>{{comment.date |date: format : short}}</p>
+  </div>
+
+  <div class="item item-body">
+    	<!--<img class="full-image" src="delorean.jpg">-->
+      <p data-ng-bind-html="comment.content.rendered"></p>
+    <p>
+      <a href="#" class="subdued">1 Like</a>
+      <a href="#" class="subdued">5 Comments</a>
+    </p>
+  </div>
+
+</div>          </md-tab>
+                <md-tab label="ACCESS">
+									<md-tab-label>
+							<i class="fa fa-map fa-2x" aria-hidden="true"></i>
+								</md-tab-label>
+                        <md-list>
+                  <md-subheader class="md-no-sticky">Nearby Stations Form Restaurant</md-subheader>
+                  <div class="row" ng-repeat="station in stationlist" style="margin-bottom: 15px;">
+                                                  <div class="col-80">
+                                                      <h5>City Name: {{ station.city }}</h5>
+                                                      <p>Station Name: {{ station.name }} </p>
+
+                                                      <p>Line: Station Name: {{ station.line }}</p>
+
+                                                      <p>Travel time : {{ station.traveltime}}</p>
+
+                                                      <p>Total Distance : {{ station.distanceKm }}</p>
+
+                                                      <md-divider></md-divider>
+                                                  </div>
+                                                  <div class="col-20" style="margin-top: 30px;">
+                                                      <a class="btn btn-danger" href="#">
+                                                      <i class="fa fa-map-o fa-2x"></i></a>
+                                                  </div>
+
+
+                                              </div><!--end product tab detail shipping section-->
+      	</md-list>
+                    </md-content>
+                </md-tab>
+				<md-tab label="GALLERY">
+					<md-tab-label>
+		<i class="fa fa-picture-o fa-2x" aria-hidden="true"></i>
+				</md-tab-label>
+
+          <div flex ng-cloak>
+            <md-grid-list
+                  md-cols="2" md-cols-sm="2" md-cols-md="3" md-cols-gt-md="6"
+                  md-row-height-gt-md="1:1" md-row-height="4:3"
+                  md-gutter="6px" md-gutter-gt-sm="2px" >
+              <md-grid-tile ng-repeat="image in restaurant['_ait-item_item-data'][0].gallery"
+                            md-rowspan="1"
+                            md-colspan="1"
+                            md-colspan-sm="1"
+                            md-colspan-xs="1"
+                            ng-class="tile.background" >
+            <img ng-src="{{image.image}}"  class="image-list-thumb" ng-click="showImages($index)"/>
+                <md-grid-tile-footer><h3 style="color: white;">{{image.title.rendered}} by {{image.author.name }}</h3></md-grid-tile-footer>
+              </md-grid-tile >
+            </md-grid-list>
+          </div>
+                </md-tab>
+            </md-tabs>
+		</md-card-content>
+	</md-card>
+    </ion-content><!--end location feed section-->
+      <div class="footer-fab-bar" >
+        <a class="md-button md-accent md-fab fab-footer" ng-click="showPopup()" aria-label="Add">
+            <i class="ion ion-compose"></i>
+        </a>
+    </div>
+    <!--angular template section-->
+    <script type="text/ng-template" id="image-popover.html">
+        <ion-modal-view>
+      <ion-header-bar class="bar-balanced material-background-nav-bar">
+        <h1 class="title">Image Gallery</h1>
+        <button class="button button-clear" ng-click="closeModal()">Close</button>
+      </ion-header-bar>
+        <ion-content>
+    <div class="modal image-modal transparent" >
+    <ion-slide-box on-slide-changed="slideChanged(index)" show-pager="true" active-slide="activeSlide">
+        <ion-slide ng-repeat="image in restaurant['_ait-item_item-data'][0].gallery">
+        <img ng-src="{{image.image}}" class="fullscreen-image"/>
+        <!--  <div class="card__author" style="padding: 5px;position: relative;">
+            <img ng-src="{{image.author.avatar_urls[48] }}" src="{{image.author.avatar_urls[48] }}">
+            <div class="card__author-content">
+           <p style="color: white;">  Posted By<a href="#" class="ng-binding"> {{image.author.name }}</a> </p>
+            </div>-->
+          </div>
+        </ion-slide>
+    </ion-slide-box>
+</div>
+  </ion-content>
+  </ion-modal-view>
+</script><!--end angular template section-->
+</ion-view>
